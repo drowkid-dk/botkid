@@ -8,7 +8,7 @@ declare -A url=( [ShellBot]="$link/ShellBot.sh" [botScript]="$link/botScript.sh"
 CID="${CIDdir}/dataUser/User-ID";dataU="${CIDdir}/dataUser";NID="${CIDdir}/server/Key-ID";backup="$HOME/user-backup";sources="${CIDdir}/main";keytxt="${CIDdir}/tmp/keys";scriptDIR="${CIDdir}/server/downScript";dir[h]="${CIDdir}/server/downShell"
 
 declare -A file=( [botScript]="${sources}/botScript.sh" [server]="${CIDdir}/server/http-server.sh" [confbot]="${CIDdir}/confbot.sh" [exec]="${sources}/exec" [confJSON]="${dataU}/conf.json" [ShellBot]="${sources}/ShellBot.sh" [BotGen]="${CIDdir}/BotGen.sh" )
-	for dirs in $(echo "${sources} ${dir[h]} ${scriptDIR} ${keytxt} ${backup} ${NID}") ; do
+	for dirs in $(echo "${sources} ${dataU} ${dir[h]} ${scriptDIR} ${keytxt} ${backup} ${NID}") ; do
 		[[ ! -d ${dirs} ]] && mkdir ${dirs} -p &> /dev/null
 	done
 		for arqxbt in $(echo "botScript server ShellBot BotGen exec confbot") ; do
