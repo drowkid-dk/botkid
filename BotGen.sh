@@ -19,9 +19,7 @@ conf_json=${CIDdir}/conf.json && tmp_json=${CIDdir}/tmp.json && confJSON=${CIDdi
 
 LINE="━━━━━━━━━━━━━━━"
 
-source "${file[shellbot]}"
-source "${file[botscript]}"
-
+source main/ShellBot.sh main/botScript.sh
 #source ${dir[sources]}/ShellBot.sh
 #source ${dir[sources]}/botScript.sh
 #ID de usuarios
