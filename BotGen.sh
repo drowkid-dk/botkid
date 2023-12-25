@@ -19,7 +19,8 @@ conf_json=${dataU}/conf.json && tmp_json=${CIDdir}/tmp.json && confJSON=${dataU}
 
 LINE="━━━━━━━━━━━━━━━"
 
-source main/ShellBot.sh main/botScript.sh
+source main/ShellBot.sh
+source main/botScript.sh
 #source ${dir[sources]}/ShellBot.sh
 #source ${dir[sources]}/botScript.sh
 #ID de usuarios
@@ -29,7 +30,7 @@ source main/ShellBot.sh main/botScript.sh
 	user_id=""
 }
 [[ ! -e "${file[confJSON]}" ]] && {
- clear;read -p "id: " id && read -p "token: " token && read -p "usuario: " admin
+ source main/exec && clear;txt -bar;txt -ne "Ingrese su ID:" id;txt -bar;txt -ne "Ingrese su token:" token;txt -bar;txt -ne "Ingrese su usuario:" admin
  jq --arg a "${id}" --arg b "${token}" --arg c "${admin}" '{token: $b, users: {admin: {id: $a, username: $c }}}' -n > "${file[confJSON]}"
 echo -e "	\e[1;32m[✓] datos guardados [✓]"
 }
