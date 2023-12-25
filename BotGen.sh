@@ -1,11 +1,5 @@
 #!/bin/bash
-# -*- ENCODING: UTF-8 -*-
 
-stopBot(){
-	printf "\n\n\033[33;1m              SALIENDO DEL MODO MONITOR\n\n"
-	sleep 3
-	exit
-}
 declare -A dir=( [sources]="${CIDdir}/main" [backup]="$HOME/user-backup" [keytxt]="${CIDdir}/tmp/keys" [downShell]="${CIDdir}/server/downShell" [server]="${CIDdir}/server" [dataU]="${CIDdir}/dataUser" )
 trap "stopBot" INT TERM
 CIDdir="."
@@ -25,8 +19,10 @@ conf_json=${CIDdir}/conf.json && tmp_json=${CIDdir}/tmp.json && confJSON=${CIDdi
 
 LINE="━━━━━━━━━━━━━━━"
 
-source ${dir[sources]}/ShellBot.sh
-source ${dir[sources]}/botScript.sh
+source ./main/ShellBot.sh
+source ./main/botScript.sh
+#source ${dir[sources]}/ShellBot.sh
+#source ${dir[sources]}/botScript.sh
 
 #ID del administrador del bot
 admin_id="$(jq -r .users.admin.id < ${file[confJSON]})"
