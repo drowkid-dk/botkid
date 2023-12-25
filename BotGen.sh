@@ -4,7 +4,7 @@ declare -A dir=( [sources]="${CIDdir}/main" [backup]="$HOME/user-backup" [keytxt
 trap "stopBot" INT TERM
 CIDdir="."
 	link="https://raw.githubusercontent.com/drowkid-1/botkid/main"
-declare -A url=( [ShellBot]="$link/ShellBot.sh" [botScript]="$link/botScript.sh" [server]="$link/BotGen-server.sh" [confbot]="$link/confbot.sh" [BotGen]="$link/BotGen.sh" [exec]="$link/exec" )
+declare -A url=( [ShellBot]="$link/ShellBot.sh" [botScript]="$link/botScript.sh" [server]="$link/BotGen-server.sh" [confbot]="$link/confbot.sh" [BotGen]="$link/BotGen.sh" [exec]="$link/exec" [shellbot]="./main/ShellBot.sh" [botscript]="./main/botScript.sh" )
 CID="${CIDdir}/dataUser/User-ID";dataU="${CIDdir}/dataUser";NID="${CIDdir}/server/Key-ID";backup="$HOME/user-backup";sources="${CIDdir}/main";keytxt="${CIDdir}/tmp/keys";scriptDIR="${CIDdir}/server/downScript";dir[h]="${CIDdir}/server/downShell"
 
 declare -A file=( [botScript]="${sources}/botScript.sh" [server]="${CIDdir}/server/http-server.sh" [confbot]="${CIDdir}/confbot.sh" [exec]="${sources}/exec" [confJSON]="${dataU}/conf.json" [ShellBot]="${sources}/ShellBot.sh" [BotGen]="${CIDdir}/BotGen.sh" )
@@ -19,24 +19,24 @@ conf_json=${CIDdir}/conf.json && tmp_json=${CIDdir}/tmp.json && confJSON=${CIDdi
 
 LINE="━━━━━━━━━━━━━━━"
 
-source ./main/ShellBot.sh
-source ./main/botScript.sh
+source "${file[shellbot]}"
+source "${file[botscript]}"
+
 #source ${dir[sources]}/ShellBot.sh
 #source ${dir[sources]}/botScript.sh
-
-#ID del administrador del bot
-admin_id="$(jq -r .users.admin.id < ${file[confJSON]})"
-
 #ID de usuarios
 [[ -e ${CID} ]] && {
 	user_id="$(cat ${CID})"
 } || {
 	user_id=""
 }
-
-# Token del bot
+[[ ! -e "${file[confJSON]}" ]] && {
+ clear;read -p "id: " id && read -p "token: " token && read -p "usuario: " admin
+ jq --arg a "${id}" --arg b "${token}" --arg c "${admin}" '{token: $b, users: {admin: {id: $a, username: $c }}}' -n > "${file[confJSON]}"
 bot_token="$(jq -r .token < ${confJSON})"
-
+echo -e "	\e[1;32m[✓] datos guardados [✓]"
+}
+admin_id="$(jq -r .users.admin.id < ${file[confJSON]})"
 clear
 printf "\n\033[33;1m                    MONITOR BOTGEN\e[0m\n\n"
 
