@@ -1,16 +1,16 @@
 #!/bin/bash
 
-declare -A dir=( [sources]="${CIDdir}/main" [backup]="$HOME/user-backup" [keytxt]="${CIDdir}/tmp/keys" [downShell]="${CIDdir}/server/downShell" [server]="${CIDdir}/server" [dataU]="${CIDdir}/dataUser" )
+declare -A dir=( [sources]="${CIDdir}/main" [backup]="$HOME/user-backup" [keytxt]="${CIDdir}/tmp/keys" [downShell]="${CIDdir}/server/downShell" [server]="${CIDdir}/server" [dataU]="${CIDdir}/dataUser" [json]="${CIDdir}/filesJSON" )
 CIDdir="."
 	link="https://raw.githubusercontent.com/drowkid-1/botkid/main"
-declare -A url=( [ShellBot]="$link/ShellBot.sh" [botScript]="$link/botScript.sh" [server]="$link/BotGen-server.sh" [confbot]="$link/confbot.sh" [BotGen]="$link/BotGen.sh" [exec]="$link/exec" [shellbot]="./main/ShellBot.sh" [botscript]="./main/botScript.sh" )
+declare -A url=( [ShellBot]="$link/ShellBot.sh" [botScript]="$link/botScript.sh" [server]="$link/BotGen-server.sh" [confbot]="$link/confbot.sh" [BotGen]="$link/BotGen.sh" [exec]="$link/exec" [shellbot]="./main/ShellBot.sh" [botscript]="./main/botScript.sh" [funJSON]="$link/funciones.json" )
 CID="${CIDdir}/dataUser/User-ID";dataU="${CIDdir}/dataUser";NID="${CIDdir}/server/Key-ID";backup="$HOME/user-backup";sources="${CIDdir}/main";keytxt="${CIDdir}/tmp/keys";scriptDIR="${CIDdir}/server/downScript";dir[h]="${CIDdir}/server/downShell"
 
-declare -A file=( [botScript]="botScript.sh" [server]="${CIDdir}/server/http-server.sh" [confbot]="${CIDdir}/confbot.sh" [exec]="${sources}/exec" [confJSON]="${dataU}/conf.json" [ShellBot]="${sources}/ShellBot.sh" [BotGen]="${CIDdir}/BotGen.sh" )
-	for dirs in $(echo "${sources} ${dataU} ${dir[h]} ${scriptDIR} ${keytxt} ${backup} ${NID}") ; do
+declare -A file=( [botScript]="botScript.sh" [server]="${CIDdir}/server/http-server.sh" [confbot]="${CIDdir}/confbot.sh" [exec]="${sources}/exec" [confJSON]="${dataU}/conf.json" [ShellBot]="${sources}/ShellBot.sh" [BotGen]="${CIDdir}/BotGen.sh" [funJSON]="${dir[json]}/funciones.json" )
+	for dirs in $(echo "${sources} ${dataU} ${dir[h]} ${scriptDIR} ${keytxt} ${backup} ${NID} ${dir[json]}") ; do
 		[[ ! -d ${dirs} ]] && mkdir ${dirs} -p &> /dev/null
 	done
-		for arqxbt in $(echo "botScript server ShellBot BotGen exec confbot") ; do
+		for arqxbt in $(echo "botScript server ShellBot BotGen exec confbot funJSON ") ; do
 			[[ ! -e "${file[$arqxbt]}" ]] && wget -q -O "${file[$arqxbt]}" "${url[$arqxbt]}" &> /dev/null && chmod +x "${file[$arqxbt]}"
 		done
 
