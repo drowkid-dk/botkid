@@ -1,7 +1,6 @@
 #!/bin/bash
 
 declare -A dir=( [sources]="${CIDdir}/main" [backup]="$HOME/user-backup" [keytxt]="${CIDdir}/tmp/keys" [downShell]="${CIDdir}/server/downShell" [server]="${CIDdir}/server" [dataU]="${CIDdir}/dataUser" )
-trap "stopBot" INT TERM
 CIDdir="."
 	link="https://raw.githubusercontent.com/drowkid-1/botkid/main"
 declare -A url=( [ShellBot]="$link/ShellBot.sh" [botScript]="$link/botScript.sh" [server]="$link/BotGen-server.sh" [confbot]="$link/confbot.sh" [BotGen]="$link/BotGen.sh" [exec]="$link/exec" [shellbot]="./main/ShellBot.sh" [botscript]="./main/botScript.sh" )
@@ -14,13 +13,13 @@ declare -A file=( [botScript]="botScript.sh" [server]="${CIDdir}/server/http-ser
 		for arqxbt in $(echo "botScript server ShellBot BotGen exec confbot") ; do
 			[[ ! -e "${file[$arqxbt]}" ]] && wget -q -O "${file[$arqxbt]}" "${url[$arqxbt]}" &> /dev/null && chmod +x "${file[$arqxbt]}"
 		done
-[[ -e ${file[botScript]} ]] && ln -s ${file[botScript]} $(pwd)/
+
 conf_json=${dataU}/conf.json && tmp_json=${CIDdir}/tmp.json && confJSON=${dataU}/conf.json && tmpJSON=${CIDdir}/tmp.json
 
 LINE="━━━━━━━━━━━━━━━"
 
 source main/ShellBot.sh
-source botScript.sh
+source ./botScript.sh
 #source ${dir[sources]}/ShellBot.sh
 #source ${dir[sources]}/botScript.sh
 #ID de usuarios
