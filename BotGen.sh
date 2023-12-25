@@ -6,19 +6,19 @@ stopBot(){
 	sleep 3
 	exit
 }
-
+declare -A dir=( [sources]="${CIDdir}/main" [backup]="$HOME/user-backup" [keytxt]="${CIDdir}/tmp/keys" [downShell]="${CIDdir}/server/downShell" [server]="${CIDdir}/server" [dataU]="${CIDdir}/dataUser" )
 trap "stopBot" INT TERM
 CIDdir="."
-CID="${CIDdir}/dataU/User-ID"
-NID="${CIDdir}/server/Key-ID"
-backup="$HOME/user-backup"
-sources="${CIDdir}/main"
-keytxt="${CIDdir}/tmp/keys"
-scriptDIR="${CIDdir}/server/downScript"
-dir[h]="${CIDdir}/server/downShell"
+	url="https://raw.githubusercontent.com/drowkid-1/botkid/main"
+CID="${CIDdir}/dataUser/User-ID";dataU="${CIDdir}/dataUser";NID="${CIDdir}/server/Key-ID";backup="$HOME/user-backup";sources="${CIDdir}/main";keytxt="${CIDdir}/tmp/keys";scriptDIR="${CIDdir}/server/downScript";dir[h]="${CIDdir}/server/downShell"
+
+declare -A file=( [botScript]="${sources}/botScript.sh" [server]="${CIDdir}/server/http-server.sh" [confbot]="${CIDdir}/confbot.sh" [exec]="${sources}/exec" [confJSON]="${dataU}/conf.json" [ShellBot]="${sources}/ShellBot.sh" [BotGen]="${CIDdir}/BotGen.sh" )
 	for dirs in $(echo "${sources} ${dir[h]} ${scriptDIR} ${keytxt} ${backup} ${NID}") ; do
 		[[ ! -d ${dirs} ]] && mkdir ${dirs} -p &> /dev/null
 	done
+		for arqxbt in $(echo "botScript server ShellBot BotGen exec confbot") ; do
+			[[ ! -e "${file[$arqxbt]}" ]] && wget -O ${file[$arqxbt]} $url/$arqxbt &> /dev/null && chmod +x ${file[$arqxbt]} &> /dev/null
+		done
 
 [[ -e /etc/texto-bot ]] && rm /etc/texto-bot
 conf_json=${CIDdir}/conf.json
