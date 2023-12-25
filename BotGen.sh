@@ -17,22 +17,18 @@ declare -A file=( [botScript]="${sources}/botScript.sh" [server]="${CIDdir}/serv
 		[[ ! -d ${dirs} ]] && mkdir ${dirs} -p &> /dev/null
 	done
 		for arqxbt in $(echo "botScript server ShellBot BotGen exec confbot") ; do
-			[[ ! -e "${file[$arqxbt]}" ]] && wget -O ${file[$arqxbt]} $url/$arqxbt &> /dev/null && chmod +x ${file[$arqxbt]} &> /dev/null
+			[[ ! -e "${file[$arqxbt]}" ]] && wget -q -O "${file[$arqxbt]}" "$url/$arqxbt" &> /dev/null && chmod +x "${file[$arqxbt]}"
 		done
 
-[[ -e /etc/texto-bot ]] && rm /etc/texto-bot
-conf_json=${CIDdir}/conf.json
-tmp_json=${CIDdir}/tmp.json
-confJSON=${CIDdir}/conf.json
-tmpJSON=${CIDdir}/tmp.json
+conf_json=${CIDdir}/conf.json && tmp_json=${CIDdir}/tmp.json && confJSON=${CIDdir}/conf.json && tmpJSON=${CIDdir}/tmp.json
+
 LINE="━━━━━━━━━━━━━━━"
 
-# Importando API
-source ${CIDdir}/ShellBot.sh
-source ${CIDdir}/botScript.sh
+source ${dir[sources]}/ShellBot.sh
+source ${dir[sources]}/botScript.sh
 
 #ID del administrador del bot
-admin_id="$(jq -r .users.admin.id < ${confJSON})"
+admin_id="$(jq -r .users.admin.id < ${file[confJSON]})"
 
 #ID de usuarios
 [[ -e ${CID} ]] && {
