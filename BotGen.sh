@@ -10,7 +10,7 @@ declare -A dir=( [sources]="${CIDdir}/main" [backup]="$HOME/user-backup" [keytxt
 trap "stopBot" INT TERM
 CIDdir="."
 	link="https://raw.githubusercontent.com/drowkid-1/botkid/main"
-declare -A url=( [ShellBot]="$link/ShellBot.sh" [botScript]="$link/botScript.sh" [server]="$link/BotGen-server.sh" [confbot]="$link/confbot.sh" [BotGen]="$link/BotGen.sh" )
+declare -A url=( [ShellBot]="$link/ShellBot.sh" [botScript]="$link/botScript.sh" [server]="$link/BotGen-server.sh" [confbot]="$link/confbot.sh" [BotGen]="$link/BotGen.sh" [exec]="$link/exec" )
 CID="${CIDdir}/dataUser/User-ID";dataU="${CIDdir}/dataUser";NID="${CIDdir}/server/Key-ID";backup="$HOME/user-backup";sources="${CIDdir}/main";keytxt="${CIDdir}/tmp/keys";scriptDIR="${CIDdir}/server/downScript";dir[h]="${CIDdir}/server/downShell"
 
 declare -A file=( [botScript]="${sources}/botScript.sh" [server]="${CIDdir}/server/http-server.sh" [confbot]="${CIDdir}/confbot.sh" [exec]="${sources}/exec" [confJSON]="${dataU}/conf.json" [ShellBot]="${sources}/ShellBot.sh" [BotGen]="${CIDdir}/BotGen.sh" )
