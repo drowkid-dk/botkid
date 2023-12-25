@@ -1,4 +1,5 @@
 #!/bin/bash
+# funciones @drowkid01
 pB="/etc/patoBot"
 		declare -A dir=( [0]=$pB [script]="$pB/server/downScript" [http]="$pB/server/downShell" [tmp]=$pB/tmp [dataU]=$pB/dataUser )
 declare -A comando=( [0]="${message_text[$id]}" )
