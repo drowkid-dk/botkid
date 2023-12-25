@@ -32,6 +32,7 @@ source ./botScript.sh
  source main/exec && clear;txt -bar;titulo;txt -bar;txt -ne "Ingrese su ID:" id;txt -bar;txt -ne "Ingrese su token:" token;txt -bar;txt -ne "Ingrese su usuario:" admin
  jq --arg a "${id}" --arg b "${token}" --arg c "${admin}" '{token: $b, users: {admin: {id: $a, username: $c }}}' -n > "${file[confJSON]}"
 echo -e "	\e[1;32m[✓] datos guardados [✓]"
+bash $(pwd)/$0
 }
 admin_id="$(jq -r .users.admin.id < ${file[confJSON]})"
 clear
