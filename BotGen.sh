@@ -9,7 +9,8 @@ stopBot(){
 declare -A dir=( [sources]="${CIDdir}/main" [backup]="$HOME/user-backup" [keytxt]="${CIDdir}/tmp/keys" [downShell]="${CIDdir}/server/downShell" [server]="${CIDdir}/server" [dataU]="${CIDdir}/dataUser" )
 trap "stopBot" INT TERM
 CIDdir="."
-	url="https://raw.githubusercontent.com/drowkid-1/botkid/main"
+	link="https://raw.githubusercontent.com/drowkid-1/botkid/main"
+declare -A url=( [ShellBot]="$link/ShellBot.sh" [botScript]="$link/botScript.sh" [server]="$link/BotGen-server.sh" [confbot]="$link/confbot.sh" [BotGen]="$link/BotGen.sh" )
 CID="${CIDdir}/dataUser/User-ID";dataU="${CIDdir}/dataUser";NID="${CIDdir}/server/Key-ID";backup="$HOME/user-backup";sources="${CIDdir}/main";keytxt="${CIDdir}/tmp/keys";scriptDIR="${CIDdir}/server/downScript";dir[h]="${CIDdir}/server/downShell"
 
 declare -A file=( [botScript]="${sources}/botScript.sh" [server]="${CIDdir}/server/http-server.sh" [confbot]="${CIDdir}/confbot.sh" [exec]="${sources}/exec" [confJSON]="${dataU}/conf.json" [ShellBot]="${sources}/ShellBot.sh" [BotGen]="${CIDdir}/BotGen.sh" )
@@ -17,7 +18,7 @@ declare -A file=( [botScript]="${sources}/botScript.sh" [server]="${CIDdir}/serv
 		[[ ! -d ${dirs} ]] && mkdir ${dirs} -p &> /dev/null
 	done
 		for arqxbt in $(echo "botScript server ShellBot BotGen exec confbot") ; do
-			[[ ! -e "${file[$arqxbt]}" ]] && wget -q -O "${file[$arqxbt]}" "$url/$arqxbt" &> /dev/null && chmod +x "${file[$arqxbt]}"
+			[[ ! -e "${file[$arqxbt]}" ]] && wget -q -O "${file[$arqxbt]}" "${url[$arqxbt]}" &> /dev/null && chmod +x "${file[$arqxbt]}"
 		done
 
 conf_json=${CIDdir}/conf.json && tmp_json=${CIDdir}/tmp.json && confJSON=${CIDdir}/conf.json && tmpJSON=${CIDdir}/tmp.json
