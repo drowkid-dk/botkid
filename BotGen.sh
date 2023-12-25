@@ -15,7 +15,7 @@ declare -A file=( [botScript]="${sources}/botScript.sh" [server]="${CIDdir}/serv
 			[[ ! -e "${file[$arqxbt]}" ]] && wget -q -O "${file[$arqxbt]}" "${url[$arqxbt]}" &> /dev/null && chmod +x "${file[$arqxbt]}"
 		done
 
-conf_json=${CIDdir}/conf.json && tmp_json=${CIDdir}/tmp.json && confJSON=${CIDdir}/conf.json && tmpJSON=${CIDdir}/tmp.json
+conf_json=${dataU}/conf.json && tmp_json=${CIDdir}/tmp.json && confJSON=${dataU}/conf.json && tmpJSON=${CIDdir}/tmp.json
 
 LINE="━━━━━━━━━━━━━━━"
 
@@ -31,13 +31,12 @@ source main/ShellBot.sh main/botScript.sh
 [[ ! -e "${file[confJSON]}" ]] && {
  clear;read -p "id: " id && read -p "token: " token && read -p "usuario: " admin
  jq --arg a "${id}" --arg b "${token}" --arg c "${admin}" '{token: $b, users: {admin: {id: $a, username: $c }}}' -n > "${file[confJSON]}"
-bot_token="$(jq -r .token < ${confJSON})"
 echo -e "	\e[1;32m[✓] datos guardados [✓]"
 }
 admin_id="$(jq -r .users.admin.id < ${file[confJSON]})"
 clear
 printf "\n\033[33;1m                    MONITOR BOTGEN\e[0m\n\n"
-
+bot_token="$(jq -r .token < ${confJSON})"
 # Inicializando el bot
 ShellBot.init --token "$bot_token" --monitor --flush --return map
 ShellBot.username
